@@ -64,14 +64,15 @@ function App() {
           numberFormat={'G'}
         />
       </div>
+      {progressState.length > 1 &&
         <ul className="Progress">
         {progressState.map(element => {
-          return(<li key={element.quantity}>
+          return(<li key={Math.random()}>
             <h3>{element.quantity}</h3>
             <p>{element.name}</p>
             </li>);
         })}
-        </ul>
+        </ul>}
       <div className="Bar">
         <Bar
           data={barState}
