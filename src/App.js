@@ -7,17 +7,21 @@ function App() {
   const [legendState, setLegendState] = useState([]);
   const [barState, setBarState] = useState([]);
   const [donutState, setDonutState] = useState([]);
+  const [totalApps, setTotalApps] = useState();
 
   useEffect(() => {
     fetchStatus().then((data) => {
-      let results = []
+      let results = [];
+      let sum = 0;
 
       data.records.forEach(element => {
         let item = {id:element.fields.id,quantity:element.fields.Totals,name:element.fields.Name};
+        sum += element.fields.Totals;
         results.push(item);
       });
 
       setLegendState(results);
+      setTotalApps(sum);
       console.log(results);
     })
 
@@ -47,6 +51,12 @@ function App() {
   return (
     <div className="App">
       <div className="Donut">
+
+        <div className="Total">
+          <h1 className="TotalNumber">{totalApps}</h1>
+          <p>Applications</p>
+        </div>
+
         <Donut
           data={legendState}
         />
