@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   const [legendState, setLegendState] = useState([]);
   const [barState, setBarState] = useState([]);
-  const [donutState, setDonutState] = useState([]);
+  const [progressState, setProgressState] = useState([]);
   const [totalApps, setTotalApps] = useState();
 
   useEffect(() => {
@@ -40,10 +40,9 @@ function App() {
       let results = []
 
       data.records.forEach(element => {
-        let item = { quantity:element.fields.Totals, name:element.fields.Name};
+        let item = { id:element.fields.id,quantity:element.fields.Totals, name:element.fields.Name};
         results.push(item);
-        console.log(item);
-        setDonutState(results);
+        setProgressState(results);
       })
     })
   }, []);
@@ -51,12 +50,10 @@ function App() {
   return (
     <div className="App">
       <div className="Donut">
-
         <div className="Total">
           <h1 className="TotalNumber">{totalApps}</h1>
           <p>Applications</p>
         </div>
-
         <Donut
           data={legendState}
         />
@@ -67,6 +64,14 @@ function App() {
           numberFormat={'G'}
         />
       </div>
+        <ul className="Progress">
+        {progressState.map(element => {
+          return(<li key={element.quantity}>
+            <h3>{element.quantity}</h3>
+            <p>{element.name}</p>
+            </li>);
+        })}
+        </ul>
       <div className="Bar">
         <Bar
           data={barState}

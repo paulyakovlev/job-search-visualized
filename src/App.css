@@ -56,3 +56,10 @@
 .TotalNumber {
   margin: 1px;
 }
+
+.Progress {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  margin: 20px 25% 20px 25%;
+}
