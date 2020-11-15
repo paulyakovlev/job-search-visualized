@@ -10,3 +10,7 @@ export function fetchStatus () {
 export function fetchSource () {
     return fetch(sourceApiUrl + apiKey).then((res) => res.json());
 }
+
+export function fetchProgress () {
+    return fetch(progressApiUrl + apiKey).then((res) => res.json());
+}
