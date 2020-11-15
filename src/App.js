@@ -53,7 +53,8 @@ function App() {
         <Legend
           data={legendState}
           height={250}
-          width={400}
+          width={300}
+          numberFormat={'G'}
         />
       </div>
       <div className="Bar">
