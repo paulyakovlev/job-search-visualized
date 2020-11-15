@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="Donut">
         <Donut
           data={legendState}
         />
@@ -56,7 +56,7 @@ function App() {
           width={400}
         />
       </div>
-      <div>
+      <div className="Bar">
         <Bar
           data={barState}
           height={400}
