@@ -5,7 +5,7 @@ The current build can be viewed at: [https://paulyakovlev.github.io/job-search-v
 
 
 ## Built with
-- [Britecharts-React](hhttps://britecharts.github.io/britecharts-react/) - React wrapper for the Britecharts data visualization library.
+- [Britecharts-React](https://britecharts.github.io/britecharts-react/) - React wrapper for the Britecharts data visualization library.
 - [Airtable](https://airtable.com/) - Spreadsheet/database with REST API access.
 - [Github Pages](https://pages.github.com/) - Application hosting and deployments.
 
