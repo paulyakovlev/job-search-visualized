@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Legend, Bar, Donut } from 'britecharts-react';
-import { fetchStatus,fetchSource, fetchProgress } from './api/Status.js';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Legend, Bar, Donut } from "britecharts-react";
+import { fetchStatus, fetchSource, fetchProgress } from "./api/Status.js";
+import "./App.css";
 
 function App() {
   const [legendState, setLegendState] = useState([]);
@@ -14,37 +14,44 @@ function App() {
       let results = [];
       let sum = 0;
 
-      data.records.forEach(element => {
-        let item = {id:element.fields.id,quantity:element.fields.Totals,name:element.fields.Name};
+      data.records.forEach((element) => {
+        let item = {
+          id: element.fields.id,
+          quantity: element.fields.Totals,
+          name: element.fields.Name,
+        };
         sum += element.fields.Totals;
         results.push(item);
       });
 
       setLegendState(results);
       setTotalApps(sum);
-      console.log(results);
-    })
+    });
 
     fetchSource().then((data) => {
-      let results = []
-      
-      data.records.forEach(element => {
-        let item = {value:element.fields.Totals,name:element.fields.Name};
+      let results = [];
+
+      data.records.forEach((element) => {
+        let item = { value: element.fields.Totals, name: element.fields.Name };
         results.push(item);
-      })
+      });
 
       setBarState(results);
     });
 
     fetchProgress().then((data) => {
-      let results = []
+      let results = [];
 
-      data.records.forEach(element => {
-        let item = { id:element.fields.id,quantity:element.fields.Totals, name:element.fields.Name};
+      data.records.forEach((element) => {
+        let item = {
+          id: element.fields.id,
+          quantity: element.fields.Totals,
+          name: element.fields.Name,
+        };
         results.push(item);
         setProgressState(results);
-      })
-    })
+      });
+    });
   }, []);
 
   return (
@@ -54,25 +61,26 @@ function App() {
           <h1 className="TotalNumber">{totalApps}</h1>
           <p>Applications</p>
         </div>
-        <Donut
-          data={legendState}
-        />
+        <Donut data={legendState} />
         <Legend
           data={legendState}
           height={250}
           width={300}
-          numberFormat={'G'}
+          numberFormat={"G"}
         />
       </div>
-      {progressState.length > 1 &&
+      {progressState.length > 1 && (
         <ul className="Progress">
-        {progressState.map(element => {
-          return(<li key={Math.random()}>
-            <h3>{element.quantity}</h3>
-            <p>{element.name}</p>
-            </li>);
-        })}
-        </ul>}
+          {progressState.map((element) => {
+            return (
+              <li key={Math.random()}>
+                <h3>{element.quantity}</h3>
+                <p>{element.name}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       <div className="Bar">
         <Bar
           data={barState}
@@ -80,10 +88,10 @@ function App() {
           betweenBarsPadding={0.3}
           isAnimated={true}
           margin={{
-              left: 100,
-              right: 40,
-              top: 30,
-              bottom: 40
+            left: 100,
+            right: 40,
+            top: 30,
+            bottom: 40,
           }}
         />
       </div>
