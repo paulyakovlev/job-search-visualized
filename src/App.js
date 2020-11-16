@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Legend, Bar, Donut } from "britecharts-react";
-import { fetchStatus, fetchSource, fetchProgress } from "./api/Status.js";
+import { fetchStatus, fetchSource } from "./api/Status.js";
+import InterviewStats from "./InterviewStats.js";
 import "./App.css";
 
 function App() {
   const [legendState, setLegendState] = useState([]);
   const [barState, setBarState] = useState([]);
-  const [progressState, setProgressState] = useState([]);
   const [totalApps, setTotalApps] = useState();
 
   useEffect(() => {
@@ -38,20 +38,6 @@ function App() {
 
       setBarState(results);
     });
-
-    fetchProgress().then((data) => {
-      let results = [];
-
-      data.records.forEach((element) => {
-        let item = {
-          id: element.fields.id,
-          quantity: element.fields.Totals,
-          name: element.fields.Name,
-        };
-        results.push(item);
-        setProgressState(results);
-      });
-    });
   }, []);
 
   return (
@@ -69,18 +55,7 @@ function App() {
           numberFormat={"G"}
         />
       </div>
-      {progressState.length > 1 && (
-        <ul className="Progress">
-          {progressState.map((element) => {
-            return (
-              <li key={Math.random()}>
-                <h3>{element.quantity}</h3>
-                <p>{element.name}</p>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <InterviewStats />
       <div className="Bar">
         <Bar
           data={barState}
