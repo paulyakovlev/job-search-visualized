@@ -14,8 +14,8 @@ export default function InterviewStats() {
           name: element.fields.Name,
         };
         results.push(item);
-        setProgressState(results);
       });
+      setProgressState(results);
     });
   }, []);
 
