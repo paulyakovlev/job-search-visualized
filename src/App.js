@@ -8,6 +8,20 @@ function App() {
   const [legendState, setLegendState] = useState([]);
   const [barState, setBarState] = useState([]);
   const [totalApps, setTotalApps] = useState();
+  const colors = [
+    "#998ce3", //purple
+    "#ffa71a", //orange
+    "#6aedc7", //green
+    "#ffce00", //yellow
+  ];
+  const britecharts = [
+    "#6aedc7", //green
+    "#39c2c9", //blue
+    "#ffce00", //yellow
+    "#ffa71a", //orange
+    "#f866b9", //pink
+    "#998ce3", //purple
+  ];
 
   useEffect(() => {
     fetchStatus().then((data) => {
@@ -47,12 +61,13 @@ function App() {
           <h1 className="TotalNumber">{totalApps}</h1>
           <p>Applications</p>
         </div>
-        <Donut data={legendState} />
+        <Donut data={legendState} colorSchema={colors} />
         <Legend
           data={legendState}
           height={250}
           width={300}
           numberFormat={"G"}
+          colorSchema={colors}
         />
       </div>
       <InterviewStats />
@@ -68,6 +83,7 @@ function App() {
             top: 30,
             bottom: 40,
           }}
+          colorSchema={britecharts}
         />
       </div>
     </div>
