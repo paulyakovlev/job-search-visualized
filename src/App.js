@@ -61,7 +61,7 @@ function App() {
           <h1 className="TotalNumber">{totalApps}</h1>
           <p>Applications</p>
         </div>
-        <Donut data={legendState} colorSchema={colors} />
+        <Donut data={legendState} colorSchema={colors} internalRadius={60} />
         <Legend
           data={legendState}
           height={250}
